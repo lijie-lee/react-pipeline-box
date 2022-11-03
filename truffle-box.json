@@ -12,6 +12,7 @@
     "Dapp: Build for production": "cd client && npm run build"
   },
   "hooks": {
-    "post-unpack": "cd client && npm ci"
+    "post-unpack": "cd client && npm ci",
+    "setup-github-action": "mv github .github"
   }
 }

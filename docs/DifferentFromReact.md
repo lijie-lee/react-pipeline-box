@@ -36,8 +36,6 @@
         ...
     ```
 
-    
-
 - add package **jest-junit** for saving testing result which is showed on the GitHub Action summary page
 
 ## truffle
@@ -51,3 +49,14 @@ _added_
 ## iac
 
 ## github/workflows
+
+_added_
+
+perform **CI** **CD** for the **React** box
+
+## package.json
+
+- add **Truffle** to make pipeline easier to create
+
+## truffle-box.json
+

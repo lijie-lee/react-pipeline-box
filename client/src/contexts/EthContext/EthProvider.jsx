@@ -15,7 +15,18 @@ function EthProvider({ children }) {
         const { abi } = artifact;
         let address, contract;
         try {
-          address = artifact.networks[networkID].address;
+          const deployedNetwork = artifact.networks[networkID];
+
+          address = deployedNetwork && deployedNetwork.address;
+          // If the network can't be found in the contract JSON call the
+          // backend API for the address.
+          if (!address) {
+            console.log("Address not found in contract JSON. Calling backup api");
+            const text = await (await fetch(`/api/GetContractAddress/?networkId=${networkID}`)).text();
+            console.log(`API result: ${text}`);
+            address = text;
+          }
+
           contract = new web3.eth.Contract(abi, address);
         } catch (err) {
           console.error(err);

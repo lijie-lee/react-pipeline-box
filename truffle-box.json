@@ -1,7 +1,8 @@
 {
   "ignore": [
     ".github",
-    ".prettierrc.json"
+    ".prettierrc.json",
+    "docs"
   ],
   "commands": {
     "Contracts: Compile": "cd truffle && truffle compile",

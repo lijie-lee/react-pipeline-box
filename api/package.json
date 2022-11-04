@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "jest": "^29.2.2",
+    "jest-junit": "^14.0.1"
+  }
+}

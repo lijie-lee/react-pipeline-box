@@ -42,6 +42,12 @@
 
 ## truffle
 
+## api
+
+_added_
+
+**Azure Function** to provide the address to the frontend.
+
 ## iac
 
 ## github/workflows

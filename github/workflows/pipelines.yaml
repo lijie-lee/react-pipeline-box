@@ -39,8 +39,10 @@ jobs:
       - name: Publish tests
         uses: actions/upload-artifact@v3
         with:
-          name: pipeline_tests
-          path: ${{ env.TRUFFLE_DIRECTORY }}/test/**
+          name: pipeline_contract _tests
+          path: |
+            ${{ env.TRUFFLE_DIRECTORY }}/test/**
+            ${{ env.TRUFFLE_DIRECTORY }}/package.json
       - name: Publish contracts
         uses: actions/upload-artifact@v3
         with:

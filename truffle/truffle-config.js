@@ -18,13 +18,15 @@
  *
  */
 
-// require('dotenv').config();
 // const mnemonic = process.env["MNEMONIC"];
 // const infuraProjectId = process.env["INFURA_PROJECT_ID"];
-
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-module.exports = {
+const path = require("path");
+require('dotenv').config();
+var devNetworkHost = process.env["DEV_NETWORK"];
+
+config = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle
@@ -43,11 +45,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    development: {
-     host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ethereum port (default: none)
-     network_id: "*",       // Any network (default: none)
-    },
+    // development: {
+    //  host: "127.0.0.1",     // Localhost (default: none)
+    //  port: 8545,            // Standard Ethereum port (default: none)
+    //  network_id: "*",       // Any network (default: none)
+    // },
     //
     // An additional network, but with some advanced options…
     // advanced: {
@@ -81,11 +83,11 @@ module.exports = {
 
   // Set default mocha options here, use special reporters, etc.
   mocha: {
-    reporter: 'xunit',
+    reporter: "mocha-xunit-reporter",
     reporterOptions: {
-       output: 'TEST-results.xml'
+      mochaFile: "TEST-results.xml"
     }
- },
+  },
 
   // Configure your compilers
   compilers: {
@@ -123,3 +125,16 @@ module.exports = {
   //   }
   // }
 };
+
+// Using this code can default to using the built in test
+// network but define a dev 
+// Network in CI system without breaking a developer inner loop.
+if (devNetworkHost) {
+  config.networks["development"] = {
+    host: devNetworkHost,
+    port: 8545,
+    network_id: '*'
+  };
+}
+
+module.exports = config;

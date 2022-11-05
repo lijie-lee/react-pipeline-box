@@ -6,7 +6,11 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.0.10"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "mocha-xunit-reporter": "^2.3.0",
+    "truffle": "^5.6.4"
+  },
   "scripts": {
     "test": "truffle test"
   },

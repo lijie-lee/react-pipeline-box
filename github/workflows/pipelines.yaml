@@ -9,14 +9,90 @@ on:
       - main
 
 env:
-  CONTRACT_DIRECTORY: ./truffle
+  TRUFFLE_DIRECTORY: ./truffle
+  CLIENT_DIRECTORY: ./client
+  API_DIRECTORY: ./api
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: compile_test
-        run: echo "success"
+      # compile and test
+      - uses: actions/checkout@v3
+
+      # contracts
+      - name: Install Truffle
+        working-directory: ${{ env.TRUFFLE_DIRECTORY }}
+        run: npm install
+      - name: Compile contracts
+        working-directory: ${{ env.TRUFFLE_DIRECTORY }}
+        run: npx truffle compile
+      - name: Test contracts
+        working-directory: ${{ env.TRUFFLE_DIRECTORY }}
+        run: npx truffle test
+      - name: Publish contract test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Contracts_Test_Results
+          path: ${{ env.TRUFFLE_DIRECTORY }}/TEST-results.xml
+      - name: Publish tests
+        uses: actions/upload-artifact@v3
+        with:
+          name: pipeline_tests
+          path: ${{ env.TRUFFLE_DIRECTORY }}/test/**
+      - name: Publish contracts
+        uses: actions/upload-artifact@v3
+        with:
+          name: pipeline_contracts
+          path: |
+            ${{ env.TRUFFLE_DIRECTORY}}/package.json
+            ${{ env.TRUFFLE_DIRECTORY}}/migrations/**
+            ${{ env.TRUFFLE_DIRECTORY}}/truffle-config.js
+            ${{ env.CLIENT_DIRECTORY }}/src/contracts/**
+
+      # frontend
+      - name: Install client dependencies
+        working-directory: ${{ env.CLIENT_DIRECTORY }}
+        run: npm install
+      - name: Build client
+        working-directory: ${{ env.CLIENT_DIRECTORY }}
+        run: npm run build
+      - name: Test client
+        working-directory: ${{ env.CLIENT_DIRECTORY }}
+        run: npm test -- --reporters=default --reporters=jest-junit
+        env:
+          CI: true
+      - name: Publish client test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Client_Test_Results
+          path: ${{ env.CLIENT_DIRECTORY }}/junit.xml
+      - name: Publish client
+        uses: actions/upload-artifact@v3 
+        with:
+          name: pipeline_client
+          path: ${{ env.CLIENT_DIRECTORY }}/build
+
+      # api
+      - name: Publish API
+        uses: actions/upload-artifact@v3
+        with:
+          name: pipeline_api
+          path: ${{ env.API_DIRECTORY }}
+      - name: Install API dependencies
+        working-directory: ${{ env.API_DIRECTORY }}
+        run: npm install
+      - name: Test API
+        working-directory: ${{ env.API_DIRECTORY }}
+        run: npm test -- --reporters=default --reporters=jest-junit
+        env: 
+          CI: true
+          networkAddress_4: "0x7a063c7e4A0EC2fB4dC0F73103Fd45F17b46Ae52"
+      - name: Publish API test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: API_Test_Results
+          path: ${{ env.API_DIRECTORY }}/junit.xml
 
   dev:
     runs-on: ubuntu-latest

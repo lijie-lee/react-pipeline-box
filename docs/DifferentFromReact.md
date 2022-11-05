@@ -40,6 +40,58 @@
 
 ## truffle
 
+- add package **mocha-xunit-reporter** for saving test results and add reporter to **truffle-config.js**
+
+  ```javascript
+  mocha: {
+    reporter: "mocha-xunit-reporter",
+      reporterOptions: {
+        mochaFile: "TEST-results.xml"
+      }
+  }
+  ```
+
+- add package **dotenv** to read the environment variables
+
+- add an environment variable **CI** to judge **devNetworkHost**
+
+  ```javascript
+  ...
+  
+  const path = require("path");
+  require('dotenv').config();
+  var devNetworkHost = process.env["DEV_NETWORK"];
+  
+  config = {
+    ...
+    networks: {
+      ...
+      // development: {
+      //  host: "127.0.0.1",     // Localhost (default: none)
+      //  port: 8545,            // Standard Ethereum port (default: none)
+      //  network_id: "*",       // Any network (default: none)
+      // },
+      ...
+    },
+    ...
+  };
+  
+  // Using this code can default to using the built in test
+  // network but define a dev 
+  // Network in CI system without breaking a developer inner loop.
+  if (devNetworkHost) {
+    config.networks["development"] = {
+      host: devNetworkHost,
+      port: 8545,
+      network_id: '*'
+    };
+  }
+  
+  module.exports = config;
+  ```
+
+  
+
 ## api
 
 _added_

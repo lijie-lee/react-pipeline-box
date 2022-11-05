@@ -12,6 +12,7 @@ env:
   TRUFFLE_DIRECTORY: ./truffle
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
+  IAC_DIRECTORY: ./iac
 
 jobs:
   build:
@@ -93,6 +94,13 @@ jobs:
         with:
           name: API_Test_Results
           path: ${{ env.API_DIRECTORY }}/junit.xml
+
+      # iac
+      - name: Publish IaC
+        uses: actions/upload-artifact@v3
+        with:
+          name: pipeline_iac
+          path: ${{ env.IAC_DIRECTORY }}
 
   dev:
     runs-on: ubuntu-latest

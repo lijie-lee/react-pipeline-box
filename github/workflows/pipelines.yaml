@@ -13,6 +13,7 @@ env:
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
   IAC_DIRECTORY: ./iac
+  RESOURCE_GROUP: Web3DevOps
 
 jobs:
   build:
@@ -108,8 +109,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: iac
-        run: echo "success"
+
+      # iac                                         
+      - name: Download IaC artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: pipeline_iac
+          path: iac
+      - name: Login Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true 
+      - name: Deploy Infra
+        uses: azure/powershell@v1
+        with:
+          azPSVersion: "latest"
+          inlineScript: |
+            Set-Location .\iac
+            .\deploy.ps1 -rgName ${{ env.RESOURCE_GROUP }}-dev -fqdn ${{ env.RESOURCE_GROUP }}-dev -repoUrl ${{ github.server_url }}/${{ github.repository }} -verbose
+            Set-Location ..
+
       - name: deploy_contracts
         run: echo "success"
       - name: deploy_frontend

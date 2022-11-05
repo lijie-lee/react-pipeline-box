@@ -26,6 +26,9 @@ coverage
 # Misc.
 .DS_Store
 
+# Github action local artifacts
+artifacts
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -23,7 +23,6 @@
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 const path = require("path");
-require('dotenv').config();
 var devNetworkHost = process.env["DEV_NETWORK"];
 
 config = {

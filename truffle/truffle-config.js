@@ -64,10 +64,10 @@ config = {
     //
     // Useful for deploying to a public network.
     // Note: It's important to wrap the provider as a function to ensure truffle uses a new provider every time.
-    goerli: {
-      provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${apiKey}`),
-      network_id: 5,       // Goerli's network id
-      chain_id: 5,         // Goerli's chain id
+    sepolia: {
+      provider: () => new HDWalletProvider(mnemonic, `https://sepolia.infura.io/v3/${apiKey}`),
+      network_id: 11155111,       // sepolia's network id
+      chain_id: 11155111,         // sepolia's chain id
       gas: 5500000,        // Gas limit used for deploys.
       confirmations: 2,    // # of confirmations to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)

@@ -6,13 +6,14 @@ param location string = 'centralus'
 param rgName string = 'truffle_demo'
 param swaName string = 'web3swa'
 param repoUrl string
+param deployGanache bool = false
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: rgName
   location: location
 }
 
-module ganache './ganache.bicep' =  {
+module ganache './ganache.bicep' = if (deployGanache)  {
   name: 'ganache'
   scope: resourceGroup(rg.name)
   params: {
@@ -22,9 +23,9 @@ module ganache './ganache.bicep' =  {
   }
 }
 
-output ganacheIp string = ganache.outputs.ganacheIp 
-output ganacheName string = ganache.outputs.ganacheName
-output ganacheFqdn string = ganache.outputs.ganacheFqdn
+output ganacheIp string = (deployGanache) ? ganache.outputs.ganacheIp : ''
+output ganacheName string = (deployGanache) ? ganache.outputs.ganacheName : ''
+output ganacheFqdn string = (deployGanache) ? ganache.outputs.ganacheFqdn : ''
 
 module web3swa './swa.bicep' = {
   name: swaName

@@ -2,7 +2,7 @@
 
 - modify code of **client/src/contexts/EthContext/EthProvider.jsx**
 
-  - add condition checking, `if (window.ethereum)`, for **useEffect** (the one using `window.ethereum`)
+  - add condition checking for testing, `if (window.ethereum)`, for **useEffect** (the one using `window.ethereum`)
 
     ```javascript
     useEffect(() => {

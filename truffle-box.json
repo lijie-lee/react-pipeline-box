@@ -13,6 +13,6 @@
     "Dapp: Build for production": "cd client && npm run build"
   },
   "hooks": {
-    "post-unpack": "node -e \"require('fs').rename('github', '.github', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\" && cd client && npm ci"
+    "post-unpack": "node -e \"require('fs').rename('github', '.github', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\" && cd client && npm ci && cd .. && cd truffle && npm ci && cd .."
   }
 }

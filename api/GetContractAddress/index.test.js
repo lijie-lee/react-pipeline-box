@@ -1,4 +1,3 @@
-require("dotenv").config();
 const httpFunction = require("./index");
 const context = require("../TestMocks/defaultContext");
 

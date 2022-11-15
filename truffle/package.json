@@ -3,12 +3,8 @@
   "version": "1.0.0",
   "description": "Truffle project with SimpleStorage contract",
   "main": "truffle-config.js",
-  "dependencies": {
-    "@truffle/hdwallet-provider": "^2.0.10"
-  },
   "devDependencies": {
-    "dotenv": "^16.0.3",
-    "mocha-xunit-reporter": "^2.3.0",
+    "@truffle/hdwallet-provider": "^2.1.1",
     "truffle": "^5.6.4"
   },
   "scripts": {

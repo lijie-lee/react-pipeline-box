@@ -84,9 +84,9 @@ config = {
 
   // Set default mocha options here, use special reporters, etc.
   mocha: {
-    reporter: "mocha-xunit-reporter",
+    reporter: "xunit",
     reporterOptions: {
-      mochaFile: "TEST-results.xml"
+      output: "TEST-results.xml"
     }
   },
 

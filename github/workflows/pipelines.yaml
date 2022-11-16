@@ -13,7 +13,7 @@ env:
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
   IAC_DIRECTORY: ./iac
-  RESOURCE_GROUP: Web3DevOps
+  RESOURCE_GROUP: Web3DevOps-${{ github.event.repository.name }}
 
 jobs:
   build:
@@ -141,7 +141,7 @@ jobs:
       # Before deploying the contracts restart the container. If you don't
       # the same container could be running for days and the logs will no 
       # longer have the accounts and private keys in them.
-      - name: deploy_contracts => Restart Ganache
+      - name: Restart Ganache
         uses: azure/powershell@v1
         with:
           azPSVersion: "latest"

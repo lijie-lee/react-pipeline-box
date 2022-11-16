@@ -24,7 +24,7 @@ _The pipeline contains 6 jobs: **build**, **dev**, **dev_validation**, **qa**, *
 - Create project on [infura](https://app.infura.io/dashboard). Obtain the **API KEY** and **Network Endpoint** from the project.
   ![](assets/SepoliaTestProject.png)
 
-- Requset TestNet Ether, e.g. sepolia Ether, from [faucet](https://faucetlink.to/goerli) for you account
+- Requset TestNet Ether, e.g. sepolia Ether, from [faucet](https://faucetlink.to/sepolia) for you account
 
 ## steps
 

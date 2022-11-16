@@ -273,7 +273,7 @@ jobs:
             .\deploy.ps1 -rgName ${{ env.RESOURCE_GROUP }}-qa -fqdn '' -repoUrl ${{ github.server_url }}/${{ github.repository }} -verbose
             Set-Location ..
 
-      # deploy contracts to Goerli test net
+      # deploy contracts to Sepolia test net
       - name: Download contracts artifacts
         uses: actions/download-artifact@v3
         with:

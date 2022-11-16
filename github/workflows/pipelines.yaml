@@ -231,6 +231,7 @@ jobs:
             Ganache IP: [http://${{ env.ganacheIp }}:8545](http://${{ env.ganacheIp }}:8545)
             Ganache FQDN: [http://${{ env.ganacheFqdn }}:8545](http://${{ env.ganacheFqdn }}:8545)
             Network ID: ${{ env.networkId }}
+            Chain ID: ${{ env.chainId }}
             Contract Address: ${{ env.contractAddress }}
             ### Account Information
             Address: $address

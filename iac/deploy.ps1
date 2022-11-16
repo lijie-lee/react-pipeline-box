@@ -52,6 +52,7 @@ if ($deployGanache.IsPresent) {
     Add-Content -Path $env:GITHUB_ENV -value "ganacheIp=$ganacheIp"
     Add-Content -Path $env:GITHUB_ENV -value "ganacheName=$ganacheName"
     Add-Content -Path $env:GITHUB_ENV -value "ganacheFqdn=$ganacheFqdn"
+    Add-Content -Path $env:GITHUB_ENV -value "chainId=$chainId"
 }
 
 $swaName = $deployment.properties.outputs.swaName.value

@@ -15,7 +15,7 @@ _The pipeline contains 6 jobs: **build**, **dev**, **dev_validation**, **qa**, *
   ```json
   {
     	"clientId": "xxxxxxxxxxxxxxxxxxxxxxx",
-      "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxx",
+      "clientSecret": "The 'Value' of Client Secrets",
       "subscriptionId":"xxxxxxxxxxxxxxxxxxxxxxx",
       "tenantId":"xxxxxxxxxxxxxxxxxxxxxxx"
   }

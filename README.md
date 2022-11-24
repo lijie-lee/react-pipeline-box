@@ -4,13 +4,13 @@ This box comes by extending [react-box](https://github.com/truffle-box/react-box
 
 ## How to setup project
 
-Refer to [tutorial](docs/Tutorial.md)
+Refer to [tutorial](https://github.com/lijie-lee/react-pipeline-box/blob/main/docs/Tutorial.md)
 
 > If just develop locally, directly run command `truffle unbox lijie-lee/react-pipeline-box`, and then start coding.
 
 ## Difference from React-Box
 
-[Difference](docs/DifferenceFromReact.md)
+[Difference](https://github.com/lijie-lee/react-pipeline-box/blob/main/docs/DifferenceFromReact.md)
 
 ## Q&A
-[QA](docs/QA.md)
+[QA](https://github.com/lijie-lee/react-pipeline-box/blob/main/docs/QA.md)

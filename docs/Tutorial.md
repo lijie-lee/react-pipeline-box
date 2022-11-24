@@ -26,6 +26,13 @@ _The pipeline contains 6 jobs: **build**, **dev**, **dev_validation**, **qa**, *
 
 - Requset TestNet Ether, e.g. sepolia Ether, from [faucet](https://faucetlink.to/sepolia) for you account
 
+- Create two **Environments** for your projects in the **setting** page. The **Name**s are **dev_validation** and **qa_validation**. And configure **Required reviewers** in the **Environments / Configure** page.
+
+  _Check [using-environments-for-deployment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment) for further help._
+
+  !! Available in public repositories. In private or internal repositories, you must use GitHub Pro, GitHub Team, or GitHub Enterprise.
+
+
 ## steps
 
 1. Create a repository on GitHub

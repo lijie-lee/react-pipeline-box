@@ -13,7 +13,7 @@ env:
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
   IAC_DIRECTORY: ./iac
-  RESOURCE_GROUP: Web3DevOps-${{ github.event.repository.name }}-${{ github.ref_name }}
+  RESOURCE_GROUP: Web3DevOps-${{ github.event.repository.name }}-${{ github.run_id }}
 
 jobs:
   build:
@@ -241,12 +241,23 @@ jobs:
 
   dev_validation:
     runs-on: ubuntu-latest
+    environment:
+      name: dev_validation
     needs: dev
     steps:
-      - name: wait_for_dev_validation
-        run: echo "success"
-      - name: delete_dev
-        run: echo "success"
+
+      - name: Login Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true 
+
+      - name: Delete DEV resource group
+        uses: azure/powershell@v1
+        with:
+          azPSVersion: "latest"
+          inlineScript: |
+            az group delete --name ${{ env.RESOURCE_GROUP }}-dev --yes --no-wait
   
   qa:
     runs-on: ubuntu-latest
@@ -364,12 +375,22 @@ jobs:
   
   qa_validation:
     runs-on: ubuntu-latest
+    environment:
+      name: qa_validation
     needs: qa
     steps:
-      - name: wait_for_qa_validation
-        run: echo "success"
-      - name: delete_qa
-        run: echo "success"
+      - name: Login Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true 
+
+      - name: Delete QA resource group
+        uses: azure/powershell@v1
+        with:
+          azPSVersion: "latest"
+          inlineScript: |
+            az group delete --name ${{ env.RESOURCE_GROUP }}-qa --yes --no-wait
     
   prod:
     runs-on: ubuntu-latest

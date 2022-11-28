@@ -56,7 +56,12 @@ _The pipeline contains 6 jobs: **build**, **dev**, **dev_validation**, **qa**, *
 
    _Input **Y** when the message **? Proceed anyway?**  is prompted_
 
-5. Push the _files_ and _directories_ unboxed to remote
+5. Configure the **DEV_VALIDATION_APPROVERS** and **QA_VALIDATION_APPROVERS** in the ".github/workflow/pipelines.yaml" file.
+   The variable is used for approve validation job to delete Azure resources created during pipeline.
+   
+   _This interaction job relies on a third-party github action. For more detail, check [manual-approval](https://github.com/trstringer/manual-approval)_
+
+6. Push the _files_ and _directories_ unboxed to remote
 
    _make sure the branch name is **main**_
 

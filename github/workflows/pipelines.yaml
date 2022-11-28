@@ -13,7 +13,7 @@ env:
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
   IAC_DIRECTORY: ./iac
-  RESOURCE_GROUP: Web3DevOps-${{ github.event.repository.name }}-${{ github.ref_name }}
+  RESOURCE_GROUP: Web3DevOps-${{ github.event.repository.name }}-${{ github.run_id }}
   # A comma-delimited list of all required approvers
   DEV_VALIDATION_APPROVERS:
   QA_VALIDATION_APPROVERS:

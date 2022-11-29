@@ -65,8 +65,6 @@ _The pipeline contains 6 jobs: **build**, **dev**, **dev_validation**, **qa**, *
 
    _make sure the branch name is **main**_
 
-_The above 5 steps are all the things needed to be done. Wait for the action to finish executing and then checkout the results._
-
 7. Approve **dev_validation** and **qa_validation** job.
 
    The aim of **dev_validation** and **qa_validation** is to delete resources created by **dev** and **qa**. Before performing the deleting command, an issue will be created and asigned to user to confirm that it's ready to do the deleting job.

@@ -52,20 +52,11 @@ As deploying contracts to testnet cost ether, your account should own enough tes
 Configure variables needed by the pipeline in settings page of GitHub repository.
 
 Create three **Actions secrets**:
-```json
-{
-    "Name": "AZURE_CREDENTIALS",
-    "Secret": "the content of AZURE_CREDENTIALS"
-}
-{
-    "Name": "API_KEY",
-    "Secret": "API KEY of infura project"
-}
-{
-    "Name": "MNEMONIC",
-    "Secret": "MNEMONIC of your account owns sepolia ETH"
-}
-```
+| Name              | Secret                                   |
+| ----------------- | ---------------------------------------- |
+| AZURE_CREDENTIALS | the content of AZURE_CREDENTIALS         |
+| API_KEY           | API KEY of infura project                |
+| MNEMONIC          | MNEMONIC of your account owns sepolia ETH|
 
 #### 5. Configure validation approvers for pipeline
 
@@ -113,9 +104,9 @@ _note_:
 
 ## Further information
 
-### Difference from React-Box
+- [Difference from React-Box](docs/DifferenceFromReact.md)
 
-[Difference](docs/DifferenceFromReact.md)
+- [Project Structrue by unboxing](docs/ProjectStructure.md)
 
 ## FAQ
 

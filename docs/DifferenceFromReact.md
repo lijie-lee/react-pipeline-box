@@ -44,22 +44,17 @@
 
   ```javascript
   mocha: {
-    reporter: "mocha-xunit-reporter",
-      reporterOptions: {
-        mochaFile: "TEST-results.xml"
-      }
+    reporter: "xunit",
+    reporterOptions: {
+      output: "TEST-results.xml"
+    }
   }
   ```
 
-- add package **dotenv** to read the environment variables
-
-- add an environment variable **CI** to judge **devNetworkHost**
+- add an environment variable **DEV_NETWORK**
 
   ```javascript
   ...
-  
-  const path = require("path");
-  require('dotenv').config();
   var devNetworkHost = process.env["DEV_NETWORK"];
   
   config = {
@@ -90,7 +85,26 @@
   module.exports = config;
   ```
 
-  
+- Add configuration for **Sepolia**
+  ```javascript
+  var apiKey = process.env["API_KEY"];
+  var mnemonic = process.env["MNEMONIC"];
+  var HDWalletProvider = require('@truffle/hdwallet-provider');
+
+  config = {
+    networks: {
+      sepolia: {
+        provider: () => new HDWalletProvider(mnemonic, `https://sepolia.infura.io/v3/${apiKey}`),
+        network_id: 11155111,       // sepolia's network id
+        chain_id: 11155111,         // sepolia's chain id
+        gas: 5500000,        // Gas limit used for deploys.
+        confirmations: 2,    // # of confirmations to wait between deployments. (default: 0)
+        timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+        skipDryRun: true     // Skip dry run before migrations? (default: false for public nets)
+      },
+    },
+  };
+  ```
 
 ## api
 

@@ -14,6 +14,6 @@
     "Dapp: Build for production": "cd client && npm run build"
   },
   "hooks": {
-    "post-unpack": "node -e \"require('fs').rename('github', '.github', function(err) { if (err) console.log(err); console.log('File successfully renamed!') })\" && cd client && npm ci && cd .. && cd truffle && npm ci && cd .. && cd api && npm ci && cd .."
+    "post-unpack": "node -e \"console.log('Start post script...'); console.log('Creating GitHub actions.'); require('fs').rename('github', '.github', function(err) { if (err) console.log(err); console.log('GitHub actions successfully created!') })\""
   }
 }

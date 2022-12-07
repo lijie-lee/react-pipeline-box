@@ -152,6 +152,28 @@ jobs:
             Write-Host "ganacheName: ${{ env.ganacheName }}"
             Write-Host "resourceGroup: ${{ env.RESOURCE_GROUP }}-dev"
             az container restart --resource-group ${{ env.RESOURCE_GROUP }}-dev --name ${{ env.ganacheName }}
+
+            # Check if ganache is connectable
+            $threshold = 50
+            $isConnectable = $false
+            $Ip = "${{ env.ganacheIp }}"
+            $Port = 8545
+            while ( $threshold -gt 0 )
+            {   
+                $isConnectable = [bool](Test-Connection -ComputerName $Ip -TcpPort $Port)
+                if ( $isConnectable ) {
+                    Write-Host "Connect to ${Ip}:$Port sucessfully!"
+                    Break
+                } else {
+                    Write-Host "Cannot connect to ${Ip}:$Port. Retry..."
+                }
+                $threshold--
+                Start-Sleep 6
+            }
+            if ( !$isConnectable ) {
+                throw "Cannot connect to ${Ip}:$Port"
+            }
+
       - name: Deploy contracts
         working-directory: ${{ env.CONTRACT_DIRECTORY }}
         run: npx truffle migrate --network development --reset --compile-none

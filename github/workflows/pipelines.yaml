@@ -13,7 +13,7 @@ env:
   CLIENT_DIRECTORY: ./client
   API_DIRECTORY: ./api
   IAC_DIRECTORY: ./iac
-  RESOURCE_GROUP: Web3DevOps-${{ github.run_id }}-${{ github.run_number }}
+  RESOURCE_GROUP: Web3DevOps
   # A comma-delimited list of all required approvers
   DEV_VALIDATION_APPROVERS:
   QA_VALIDATION_APPROVERS:
@@ -130,7 +130,7 @@ jobs:
           azPSVersion: "latest"
           inlineScript: |
             Set-Location .\iac
-            .\deploy.ps1 -rgName ${{ env.RESOURCE_GROUP }}-dev -fqdn ${{ env.RESOURCE_GROUP }}-dev -repoUrl ${{ github.server_url }}/${{ github.repository }} -deployGanache -verbose
+            .\deploy.ps1 -rgName ${{ env.RESOURCE_GROUP }}-dev -fqdn ${{ env.RESOURCE_GROUP }}-${{ github.sha }}-dev -repoUrl ${{ github.server_url }}/${{ github.repository }} -deployGanache -verbose
             Set-Location ..
 
       # deploy contracts
